@@ -23,3 +23,12 @@ compile: init
 .PHONY: flash
 flash: init
 	$(QMK) flash -kb $(KB) -km $(KM)
+
+.PHONY: clean
+clean:
+	git --git-dir=qmk_firmware/.git reset --hard
+
+.PHONY: update
+update: clean
+	git submodule init
+	git submodule update --recursive
